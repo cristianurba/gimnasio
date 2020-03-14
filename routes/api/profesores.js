@@ -14,6 +14,12 @@ router.post('/', async (req, res) => {
     res.json(result);
 });
 
+//PUT http://localhost:3000/api/profesores/:pProfesorId
+router.put('/:pProfesorId', async (req, res) => {
+    const result = await Profesor.updateById(req.body, req.params.pProfesorId);
+    res.json(result)
+});
+
 // DELETE http://localhost:3000/api/profesores
 router.delete('/', async (req, res) => {
     const result = await Profesor.deleteById(req.body.id);

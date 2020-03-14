@@ -16,6 +16,15 @@ const create = ({ nombre, experiencia }) => {
     });
 };
 
+const updateById = (pBody, pProfesorId) => {
+    return new Promise((resolve, reject) => {
+        db.query('update profesores set ? where id = ' + pProfesorId, [pBody], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    })
+}
+
 const deleteById = (pProfesorId) => {
     return new Promise((resolve, reject) => {
         db.query('delete from profesores where id = ?', [pProfesorId], (err, result) => {
@@ -28,5 +37,6 @@ const deleteById = (pProfesorId) => {
 module.exports = {
     getAll: getAll,
     create: create,
+    updateById: updateById,
     deleteById: deleteById
 }

@@ -32,6 +32,13 @@ router.post('/', [
     res.json(result);
 });
 
+//PUT http://localhost:3000/api/clientes/:pClienteId
+router.put('/:pClienteId', async (req, res) => {
+    const result = await Cliente.updateById(req.body, req.params.pClienteId);
+    res.json(result)
+});
+
+
 // DELETE http://localhost:3000/api/clientes
 router.delete('/', async (req, res) => {
     const result = await Cliente.deleteById(req.body.id);

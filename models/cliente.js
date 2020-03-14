@@ -16,6 +16,15 @@ const create = ({ nombre, apellidos, direccion, email, edad, sexo, cuota, fecha_
     })
 }
 
+const updateById = (pBody, pClienteId) => {
+    return new Promise((resolve, reject) => {
+        db.query('update clientes set ? where id = ' + pClienteId, [pBody], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    })
+}
+
 const deleteById = (pClienteId) => {
     return new Promise((resolve, reject) => {
         db.query('delete from clientes where id = ?', [pClienteId], (err, result) => {
@@ -28,5 +37,6 @@ const deleteById = (pClienteId) => {
 module.exports = {
     getAll: getAll,
     create: create,
+    updateById: updateById,
     deleteById: deleteById,
 }

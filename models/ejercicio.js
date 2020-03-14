@@ -16,6 +16,14 @@ const create = ({ titulo, duracion, repeticiones }) => {
     });
 };
 
+const updateById = (pBody, pEjercicioId) => {
+    return new Promise((resolve, reject) => {
+        db.query('update ejercicios set ? where id = ' + pEjercicioId, [pBody], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    })
+}
 const deleteById = (pEjercicioId) => {
     return new Promise((resolve, reject) => {
         db.query('delete from ejercicios where id = ?', [pEjercicioId], (err, result) => {
@@ -28,5 +36,6 @@ const deleteById = (pEjercicioId) => {
 module.exports = {
     getAll: getAll,
     create: create,
+    updateById: updateById,
     deleteById: deleteById
 }
